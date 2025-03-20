@@ -1,184 +1,143 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-
-// Variáveis Básicas declaradas primeiro.
-
-	char cidade_a[21];
-	char cidade_b[21];
-	
-    float area_a;
-	float area_b;
-	
-    int populacao_a;
-    int populacao_b;
     
-    float pib_a;
-	float pib_b;
-	
-    int pontos_a;
-	int pontos_b;
+// Declaração das Variáveis
 
-// Entrada de dados do usuário - Cadastro das cartas
-    
-    printf("Bem vindo ao Super Trunfo Países Digital, duas cartas vão competir uma com a outra.\nPara começar, digite o nome da primeira cidade. \n");
-    	fgets(cidade_a, 21, stdin); // Utilizando fgets porque algumas cidades (São Paulo, Rio de Janeiro, Belo Horizonte...) têm espaços no nome.
+    int opcaoMenu, opcaoAtributo; // Usadas nos switches
 
-    printf("Quantos quilômetros ela tem de Área? \n");
-    	scanf("%f", &area_a);
+    char paisA[20] = "Brasil";
+    char paisB[20] = "Canadá";
 
-    printf("Quantas pessoas vivem nela? \n");
-        scanf("%d", &populacao_b);
+    // Simplificando os números pra deixar mais legível durante a exibição, medida comentada ao lado.
 
-    printf("Qual o PIB dessa cidade (em bilhões)? \n");
-    	scanf("%f", &pib_a);
+    int populacaoA = 211; // Milhões (211.000.000)
+    int populacaoB = 40; // (40.000.000)
 
-    printf("Quantos pontos turísticos tem essa cidade? \n");
-    	scanf("%d", &pontos_a);
-    	fgetc(stdin); // Uma quebra de linha fica no buffer e pula o fgets que vem em seguinte, fgetc ou getchar resolve o problema.  
-    	
-   	printf("Ótimo! E com qual cidade ela vai competir? \n");
-    	fgets(cidade_b, 21, stdin);
+    float areaA = 8510000; // Milhões de quilômetros quadrados (8.510.000 km²)
+    float areaB = 9985000; // (9.985.000 km²)
 
-    printf("Quantos quilômetros ela tem de Área? \n");
-    	scanf("%f", &area_b);
+    float pibA = 2.17; // Trilhões de dólares (2.170.000.000 USD)
+    float pibB = 2.14; // (2.140.000.000)
 
-    printf("Quantas pessoas vivem nela? \n");
-        scanf("%d", &populacao_b);
+    int pontosTuristicosA = 50; // Não tem como ver *exatamente* quantos pontos turísticos os países tem, número vagamente aproximado
+    int pontosTuristicosB = 40;
 
-    printf("Qual o PIB dessa cidade (em bilhões)? \n");
-    	scanf("%f", &pib_b);
-
-    printf("Quantos pontos turísticos tem essa cidade? \n");
-    	scanf("%d", &pontos_b);
-
-// Cálculo das variáveis de Densidade Populacional e PIB per Capita.
-    
-    float densidade_a;
-    float densidade_b;
-    
-    float per_capita_a;
-    float per_capita_b;
-    
-        densidade_a = (float)(populacao_a / area_a); // Conversão explícita da população pro tipo float
-        densidade_b = (float)(populacao_b / area_b);
-
-        per_capita_a = pib_a / (float)(populacao_a); 
-        per_capita_b = pib_b / (float)(populacao_b);
-
-// Cálculo do Super Poder
-
-    float superPoderA = ((float)populacao_a + area_a + pib_a + (float)pontos_a + per_capita_a) + (densidade_a * -1); // Multiplicando por menos 1 para inverter o valor da densidade populacional
-    float superPoderB = ((float)populacao_b + area_a + pib_b + (float)pontos_b + per_capita_b) + (densidade_b * -1);
+    float densidadeA = ((populacaoA * 1000000) / (areaA)); // habitantes por quilômetro quadrado.
+    float densidadeB = ((populacaoB * 1000000) / (areaB)); // Multiplicando por milhão para o cálculo correto
 
 
+// Função de comparação das cartas pra poder deixar o código do menu mais limpo.
+    void comparacaoCartas() {
+        switch (opcaoAtributo) {
+            case 1:
+                printf("―― Comparação de População!! ――\n");
+                printf("Carta 1 - %s: %d milhões!\n", paisB, populacaoA);
+                printf("Carta 2 - %s: %d milhões!\n", paisA, populacaoB);
+                    if (populacaoA > populacaoB) {
+                        printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
+                    } else if (populacaoA == populacaoB) {
+                        printf("― As cartas empataram! ―\n");
+                    } else {
+                        printf("― A Carta 2 (%s) ganhou! ―\n", paisB);
+                    };
+                break;
 
-// Exibir as duas cartas:
+            case 2:
+                printf("―― Comparação de Área!! ――\n");
+                printf("Carta 1 - %s: %.2f km²!\n", paisB, areaA);
+                printf("Carta 2 - %s: %.2f km²!\n", paisA, areaB);
+                    if (areaA > areaB) {
+                        printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
+                    } else if (areaA == areaB) {
+                        printf("― As cartas empataram! ―\n");
+                    } else {
+                        printf("― A Carta 2 (%s) ganhou! ―\n", paisB);
+                    };
+                break;
 
-printf("Essas são as cartas: \n \n"); // Linha dupla pra ficar mais legível.
+            case 3:
+                printf("―― Comparação de Produto Interno Bruto!! ――\n");
+                printf("Carta 1 - %s: %.2f trilhões de dólares!\n", paisB, pibA);
+                printf("Carta 2 - %s: %.2f trilhões de dólares!\n", paisA, pibB);
+                    if (pibA > pibB) {
+                        printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
+                    } else if (pibA == pibB) {
+                        printf("― As cartas empataram! ―\n");
+                    } else {
+                        printf("― A Carta 2 (%s) ganhou! ―\n", paisB);
+                    };
+                break;
 
-    printf("――― Carta 1 ⬎ \n");
-    printf("Estado: A\n");
-    printf("Código: A01\n");
-    printf("Nome da Cidade: %s", cidade_a); // Não precisa de quebra de linha, o usuário pressiona 'enter' quando digita o nome da cidade, quando adiciona \n se torna uma quebra de linha dupla.
-    printf("Área da Cidade: %.2f km² \n", area_a);
-    printf("População: %d\n", populacao_a);
-    printf("PIB: %.2f bilhões de reais \n", pib_a);
-    printf("Densidade Populacional: %.2f hab/km²\n", densidade_a);
-    printf("PIB per Capita: R$ %.2f \n", per_capita_a);
-    printf("Número de pontos turísticos: %d \n", pontos_a);
-    printf("SUPER PODER: %.2f \n \n", superPoderA);
+            case 4:
+                printf("―― Comparação de Pontos Turísticos!! ――\n");
+                printf("Carta 1 - %s: %d Pontos Turísticos!\n", paisB, pontosTuristicosA);
+                printf("Carta 2 - %s: %d Pontos turísticos!\n", paisA, pontosTuristicosB);
+                    if (pontosTuristicosA > pontosTuristicosB) {
+                        printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
+                    } else if (pontosTuristicosA == pontosTuristicosB) {
+                        printf("― As cartas empataram! ―\n");
+                    } else {
+                        printf("― A Carta 2 (%s) ganhou! ―\n", paisB);
+                    };
+                break;
 
-    printf("――― Carta 2 ⬎ \n");
-    printf("Estado: B\n");
-    printf("Código: B02\n");
-    printf("Nome da Cidade: %s", cidade_b);
-    printf("Área da Cidade: %.2f km² \n", area_b);
-    printf("População: %d\n", populacao_b);
-    printf("PIB: %.2f reais \n", pib_b);
-    printf("Densidade Populacional: %.2f hab/km²\n", densidade_b);
-    printf("PIB per Capita: %.2f reais\n", per_capita_b);
-    printf("Número de pontos turísticos: %d \n", pontos_b);
-    printf("SUPER PODER: %.2f \n \n", superPoderB);
+            case 5:
+                printf("―― Comparação da Densidade Demográfica!! ――\n");
+                printf("Carta 1 - %s: %.2f hab/km²!\n", paisB, densidadeB);
+                printf("Carta 2 - %s: %.2f hab/km²!\n", paisA, densidadeA);
+                    if (pibA < pibB) { // Trocando o sinal de comparação, pois o país com MENOR densidade vence.
+                        printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
+                    } else if (densidadeA == densidadeB) {
+                        printf("― As cartas empataram! ―\n");
+                    } else {
+                        printf("― A Carta 2 (%s) ganhou! ―\n", paisB);
+                    };
+                break;
 
-// Exibir Comparação entre as cartas. Todas as variáveis com a letra A são referentes à Carta 1, as com a letra B são referentes à Carta 2
+        };
+    };
 
-int vitoriasA; // Declaração da variável de quantas vezes A venceu no geral
-int vitoriasB; // Declaração da variável de quantas vezes B venceu no geral
+// Função do menu principal, usado como função pra poder "trazer o usuário de volta" quando escolher uma opção, e sair somente quando escolher a opção 3.
+    void menuPrincipal() {
+        printf("――― Bem vindo(a) ao Super Trunfo - Países ! ―――\n");
+        printf("1. Comparação das Cartas\n");
+        printf("2. Regras/Explicação\n");
+        printf("3. Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &opcaoMenu);
 
+        switch (opcaoMenu) {
+            case 1:
+                printf("CARTA 1 - %s\nCARTA 2 - %s\n", paisA, paisB);
+                printf("O que você deseja comparar?\n");
+                printf("1. População\n");
+                printf("2. Área\n");
+                printf("3. PIB\n");
+                printf("4. Pontos Turísticos\n");
+                printf("5. Densidade Demográfica\n");
+                printf("Escolha: ");
+                scanf("%d", &opcaoAtributo);
+                comparacaoCartas();
 
-    printf("――― Comparação das Cartas! ――― \n \n");
+                break;
+            case 2:
+                printf("\nO Super Trunfo - Países funciona comparando duas cartas com a temática de países.\nCada carta tem seus atributos específicos, e aquela com o melhor, vence.\n\n");
+                menuPrincipal(); // Retornar o usuário pro menu.
+                break;
+            case 3:
+                printf("\nSaindo...\n\n");
+                break;
 
-
-    if(populacao_a > populacao_b) {
-        printf("População: Carta 1 Venceu! \n");
-        vitoriasA++;
+            default:
+                printf("Opção Inválida - Insira apenas o número da opção!\n\n");
+                menuPrincipal(); // Retornar o usuário pro menu.
+            }
         
-    } else {
-            printf("População: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(area_a > area_b) {
-        printf("Área: Carta 1 Venceu! \n");
-        vitoriasA++;
-
-    } else {
-            printf("Área: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(pib_a > pib_b) {
-        printf("PIB: Carta 1 Venceu! \n");
-        vitoriasA++;
-
-    } else {
-            printf("PIB: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
+        };        
     
-    if(pontos_a > pontos_b) {
-        printf("Quantidade de Pontos Turísticos: Carta 1 Venceu! \n");
-        vitoriasA++;
-
-    } else {
-            printf("Quantidade de Pontos Turísticos: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(densidade_a > densidade_b) {
-        printf("Densidade Populacional: Carta 2 Venceu! \n"); // Nesse caso, a carta com o MAIOR valor de densidade demográfica perde, logo se densidade_a > densidade_b, cidade B / Carta 2 ganha.
-        vitoriasA++;
-
-    } else {
-            printf("Densidade Populacional: Carta 1 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(per_capita_a > per_capita_b) {
-        printf("PIB per Capita: Carta 1 Venceu! \n");
-        vitoriasA++;
-
-    } else {
-            printf("PIB per Capita: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(superPoderA > superPoderB) {
-        printf("SUPER PODER: Carta 1 Venceu! \n");
-        vitoriasA++;
-
-    } else {
-            printf("SUPER PODER: Carta 2 Venceu! \n");
-            vitoriasB++;        
-    };
-
-    if(vitoriasA > vitoriasB) {
-    printf("\nRESULTADO - A Carta 1 saiu vitoriosa!\n");
-
-    } else {
-            printf("\nRESULTADO - A Carta 2 saiu vitoriosa!\n");
-    };
+    menuPrincipal(); // Chamando a função do menu.
 
     return 0;
 }
