@@ -33,8 +33,8 @@ int main() {
         switch (opcaoAtributo) {
             case 1:
                 printf("―― Comparação de População!! ――\n");
-                printf("Carta 1 - %s: %d milhões!\n", paisB, populacaoA);
-                printf("Carta 2 - %s: %d milhões!\n", paisA, populacaoB);
+                printf("Carta 1 - %s: %d milhões!\n", paisA, populacaoA);
+                printf("Carta 2 - %s: %d milhões!\n", paisB, populacaoB);
                     if (populacaoA > populacaoB) {
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (populacaoA == populacaoB) {
@@ -46,8 +46,8 @@ int main() {
 
             case 2:
                 printf("―― Comparação de Área!! ――\n");
-                printf("Carta 1 - %s: %.2f km²!\n", paisB, areaA);
-                printf("Carta 2 - %s: %.2f km²!\n", paisA, areaB);
+                printf("Carta 1 - %s: %.2f km²!\n", paisA, areaA);
+                printf("Carta 2 - %s: %.2f km²!\n", paisB, areaB);
                     if (areaA > areaB) {
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (areaA == areaB) {
@@ -59,8 +59,8 @@ int main() {
 
             case 3:
                 printf("―― Comparação de Produto Interno Bruto!! ――\n");
-                printf("Carta 1 - %s: %.2f trilhões de dólares!\n", paisB, pibA);
-                printf("Carta 2 - %s: %.2f trilhões de dólares!\n", paisA, pibB);
+                printf("Carta 1 - %s: %.2f trilhões de dólares!\n", paisA, pibA);
+                printf("Carta 2 - %s: %.2f trilhões de dólares!\n", paisB, pibB);
                     if (pibA > pibB) {
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (pibA == pibB) {
@@ -72,8 +72,8 @@ int main() {
 
             case 4:
                 printf("―― Comparação de Pontos Turísticos!! ――\n");
-                printf("Carta 1 - %s: %d Pontos Turísticos!\n", paisB, pontosTuristicosA);
-                printf("Carta 2 - %s: %d Pontos turísticos!\n", paisA, pontosTuristicosB);
+                printf("Carta 1 - %s: %d Pontos Turísticos!\n", paisA, pontosTuristicosA);
+                printf("Carta 2 - %s: %d Pontos turísticos!\n", paisB, pontosTuristicosB);
                     if (pontosTuristicosA > pontosTuristicosB) {
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (pontosTuristicosA == pontosTuristicosB) {
@@ -85,8 +85,8 @@ int main() {
 
             case 5:
                 printf("―― Comparação da Densidade Demográfica!! ――\n");
-                printf("Carta 1 - %s: %.2f hab/km²!\n", paisB, densidadeB);
-                printf("Carta 2 - %s: %.2f hab/km²!\n", paisA, densidadeA);
+                printf("Carta 1 - %s: %.2f hab/km²!\n", paisA, densidadeB);
+                printf("Carta 2 - %s: %.2f hab/km²!\n", paisB, densidadeA);
                     if (pibA < pibB) { // Trocando o sinal de comparação, pois o país com MENOR densidade vence.
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (densidadeA == densidadeB) {
