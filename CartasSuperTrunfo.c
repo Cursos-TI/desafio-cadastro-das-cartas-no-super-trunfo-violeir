@@ -85,8 +85,8 @@ int main() {
 
             case 5:
                 printf("―― Comparação da Densidade Demográfica!! ――\n");
-                printf("Carta 1 - %s: %.2f hab/km²!\n", paisA, densidadeB);
-                printf("Carta 2 - %s: %.2f hab/km²!\n", paisB, densidadeA);
+                printf("Carta 1 - %s: %.2f hab/km²!\n", paisA, densidadeA);
+                printf("Carta 2 - %s: %.2f hab/km²!\n", paisB, densidadeB);
                     if (pibA < pibB) { // Trocando o sinal de comparação, pois o país com MENOR densidade vence.
                         printf("― A Carta 1 (%s) ganhou! ―\n", paisA);
                     } else if (densidadeA == densidadeB) {
